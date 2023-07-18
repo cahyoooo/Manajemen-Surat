@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 09, 2020 at 07:23 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Host: localhost:8111
+-- Waktu pembuatan: 17 Jul 2023 pada 13.17
+-- Versi server: 10.4.28-MariaDB
+-- Versi PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_disposisi`
+-- Struktur dari tabel `tbl_disposisi`
 --
 
 CREATE TABLE `tbl_disposisi` (
@@ -36,12 +36,12 @@ CREATE TABLE `tbl_disposisi` (
   `catatan` varchar(250) NOT NULL,
   `id_surat` int(10) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_instansi`
+-- Struktur dari tabel `tbl_instansi`
 --
 
 CREATE TABLE `tbl_instansi` (
@@ -56,19 +56,19 @@ CREATE TABLE `tbl_instansi` (
   `email` varchar(50) NOT NULL,
   `logo` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_instansi`
+-- Dumping data untuk tabel `tbl_instansi`
 --
 
 INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
-(1, 'Dinas Pendidikan dan Kebudaayaan', 'SMAN 3', 'Terakreditasi A', 'Jl M yusuf ', 'Mawar. S.Pd. M.Si.', '11234567891112', 'http://sman3.sch.id/', 'info@sman3.sch.id', 'envelope-png-5a37445633d950.8239343715135714142124.png', 1);
+(1, 'Dinas Pendidikan dan Kebudaayaan', 'Universitas Sebelas Maret', 'Terakreditasi Unggul', 'Jalan Ir. Sutami 36 Kentingan, Jebres, Surakarta, Jawa Tengah', 'Ardhi Wijayanto S.Kom. M.Cs.', '11234567891112', 'http://uns.ac.id/', 'humas@mail.uns.ac.id', 'uns.png', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_klasifikasi`
+-- Struktur dari tabel `tbl_klasifikasi`
 --
 
 CREATE TABLE `tbl_klasifikasi` (
@@ -77,20 +77,21 @@ CREATE TABLE `tbl_klasifikasi` (
   `nama` varchar(250) NOT NULL,
   `uraian` mediumtext NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_klasifikasi`
+-- Dumping data untuk tabel `tbl_klasifikasi`
 --
 
 INSERT INTO `tbl_klasifikasi` (`id_klasifikasi`, `kode`, `nama`, `uraian`, `id_user`) VALUES
 (1, '01', 'Pemberitahuan', 'Surat Pemberitahuan', 1),
-(2, '02', 'Pengajuan', 'Surat Pengajuan', 1);
+(2, '02', 'Pengajuan', 'Surat Pengajuan', 1),
+(3, '03', 'Edaran', 'Surat Edaran', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_sett`
+-- Struktur dari tabel `tbl_sett`
 --
 
 CREATE TABLE `tbl_sett` (
@@ -99,10 +100,10 @@ CREATE TABLE `tbl_sett` (
   `surat_keluar` tinyint(2) NOT NULL,
   `referensi` tinyint(2) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_sett`
+-- Dumping data untuk tabel `tbl_sett`
 --
 
 INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `referensi`, `id_user`) VALUES
@@ -111,7 +112,7 @@ INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `referensi`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_surat_keluar`
+-- Struktur dari tabel `tbl_surat_keluar`
 --
 
 CREATE TABLE `tbl_surat_keluar` (
@@ -126,12 +127,19 @@ CREATE TABLE `tbl_surat_keluar` (
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data untuk tabel `tbl_surat_keluar`
+--
+
+INSERT INTO `tbl_surat_keluar` (`id_surat`, `no_agenda`, `tujuan`, `no_surat`, `isi`, `kode`, `tgl_surat`, `tgl_catat`, `file`, `keterangan`, `id_user`) VALUES
+(1, 1, 'test', '01', 'test', '01', '2023-07-17', '2023-07-17', '889-REVDBSMP-Revisi.drawio.png', 'penting', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_surat_masuk`
+-- Struktur dari tabel `tbl_surat_masuk`
 --
 
 CREATE TABLE `tbl_surat_masuk` (
@@ -147,19 +155,19 @@ CREATE TABLE `tbl_surat_masuk` (
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_surat_masuk`
+-- Dumping data untuk tabel `tbl_surat_masuk`
 --
 
 INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`, `id_user`) VALUES
-(1, 1, '2019/IX/S-12', 'CV. Air Mail', 'lorem', '01', '132', '2019-11-01', '2019-11-22', '5271-Surat Edaran.pdf', 'Edaran', 1);
+(2, 2, '1234', 'Fatisda', 'test', '03', '01', '2023-07-17', '2023-07-17', '1083-kbkrn htn.pdf', 'coba', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_user`
+-- Struktur dari tabel `tbl_user`
 --
 
 CREATE TABLE `tbl_user` (
@@ -169,10 +177,10 @@ CREATE TABLE `tbl_user` (
   `nama` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_user`
+-- Dumping data untuk tabel `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
@@ -184,77 +192,77 @@ INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin
 --
 
 --
--- Indexes for table `tbl_disposisi`
+-- Indeks untuk tabel `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
   ADD PRIMARY KEY (`id_disposisi`);
 
 --
--- Indexes for table `tbl_instansi`
+-- Indeks untuk tabel `tbl_instansi`
 --
 ALTER TABLE `tbl_instansi`
   ADD PRIMARY KEY (`id_instansi`);
 
 --
--- Indexes for table `tbl_klasifikasi`
+-- Indeks untuk tabel `tbl_klasifikasi`
 --
 ALTER TABLE `tbl_klasifikasi`
   ADD PRIMARY KEY (`id_klasifikasi`);
 
 --
--- Indexes for table `tbl_sett`
+-- Indeks untuk tabel `tbl_sett`
 --
 ALTER TABLE `tbl_sett`
   ADD PRIMARY KEY (`id_sett`);
 
 --
--- Indexes for table `tbl_surat_keluar`
+-- Indeks untuk tabel `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
   ADD PRIMARY KEY (`id_surat`);
 
 --
--- Indexes for table `tbl_surat_masuk`
+-- Indeks untuk tabel `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
   ADD PRIMARY KEY (`id_surat`);
 
 --
--- Indexes for table `tbl_user`
+-- Indeks untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tbl_disposisi`
+-- AUTO_INCREMENT untuk tabel `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
   MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbl_klasifikasi`
+-- AUTO_INCREMENT untuk tabel `tbl_klasifikasi`
 --
 ALTER TABLE `tbl_klasifikasi`
-  MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tbl_surat_keluar`
+-- AUTO_INCREMENT untuk tabel `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
-  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_surat_masuk`
---
-ALTER TABLE `tbl_surat_masuk`
   MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tbl_user`
+-- AUTO_INCREMENT untuk tabel `tbl_surat_masuk`
+--
+ALTER TABLE `tbl_surat_masuk`
+  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
   MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;

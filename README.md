@@ -5,7 +5,8 @@ Muhammad Cahyo Nugroho (M0521049)
 Muhammad Rayhan Guston (M0521057)
 Farros Muhammad Iqbal (M0520029)
 
-untuk masuk website dapat login dengan:
+untuk masuk program dari website dapat login dengan:
+
 user: admin
 pass: admin
 
@@ -20,3 +21,5 @@ pass: rayhan
 
 user: farros
 pass: farros
+
+Untuk Login dari localhost hanya bisa menggunakan admin, dan pengguna
